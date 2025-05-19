@@ -1,0 +1,52 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.db
+*.sqlite3
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+target/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Logs
+logs/
+*.log
+
+# Operating System files
+Desktop.ini
+$RECYCLE.BIN/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Build directories
+/dist
+/build
+
+# Test output
+/coverage

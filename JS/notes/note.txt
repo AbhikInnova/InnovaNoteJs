@@ -1,0 +1,217 @@
+CommandLineArgument,EventEmitter,REPL,interpreter
+
+CommandLineArgument:
+in js CommandLineArgument refers values you can pass to a js program when you run it from command
+when you run a js file with Node.js you can pass any argument in the special process.argv array
+
+if you run command in bash: node app.js hello world
+you can access the argument inside app.js : console.log(process.argv)
+OUTPUT:
+    [
+  '/path/to/node',      // process.argv[0] = path to Node.js
+  '/path/to/app.js',    // process.argv[1] = path to your script
+  'hello',              // process.argv[2]
+  'world'               // process.argv[3]
+]
+to extract only user provided arg:
+const arg=process.argv.slice(2);//hello world
+
+CALCULATOR:
+
+const args = process.argv.slice(2);
+
+if (args.length !== 3) {
+  console.log("Usage: node calculator.js <num1> <operator> <num2>");
+  process.exit(1);
+}
+
+const num1 = parseFloat(args[0]);
+const operator = args[1];
+const num2 = parseFloat(args[2]);
+
+let result;
+
+switch (operator) {
+  case '+':
+    result = num1 + num2;
+    break;
+  case '-':
+    result = num1 - num2;
+    break;
+  case '*':
+    result = num1 * num2;
+    break;
+  case '/':
+    if (num2 === 0) {
+      console.log("Error: Cannot divide by zero.");
+      process.exit(1);
+    }
+    result = num1 / num2;
+    break;
+  default:
+    console.log("Error: Unknown operator. Use +, -, *, or /.");
+    process.exit(1);
+}
+
+console.log(`Result: ${result}`);
+
+
+node calculator.js 10 + 5
+ 
+
+process.exit(code) ends the current Node.js process.
+code 0 :success
+code nonzero :error
+
+*********************************************************************************************************************************************
+A REPL stands for Read–Eval–Print Loop. It's an interactive programming environment that lets you enter and execute code one line (or expression) at a time.
+
+*****************************************************************************************************************************************************************************
+EVENT EMITTER:
+->it allows to objects to communicate each other through events
+An event emitter is an object
+->emits named event
+->listens for those events with listeners 
+NJ provide a build in module "events", inside this module we have EventEmitter class,using this class we can create,listen,remove events.
+
+const EventEmitter=require("events")
+const emitter=new EventEmitter();
+//register a listener
+emitter.on("event1",()=>{
+console.log("hello,listener called")}
+)
+//create event
+emitter.emit("event1");
+->>>>hello,listener called
+
+TO SEE ALL LISTENERS------------------------------------------------------------------------------------------------------------------------->
+
+emitter.listeners(event name)//returns an array of listeners
+
+PASSING ARGUMENTS:---------------------------------------------------------------------------------------------------------------------------------------->
+
+emitter.on('greet', (name) => {
+  console.log(`Hello, ${name}!`);
+});
+
+emitter.emit('greet', 'Alice');
+
+
+ONCE METHOD:------------------------------------------------------------------------------------------------------------------------------------->
+
+emitter.once('greet',()=>{
+console.log("done for 1st time")})
+
+emitter.emit('greet');//done for 1st time
+emitter.emit('greet');//won't trigger again
+
+REMOVE LISTENER:------------------------------------------------------------------------------------------------------------------->
+
+emitter.removeListener('greet',function name :same as listener function as referance)
+#####   emitter.removeAllListeners('event');->remove all listeners
+
+EXTENDS EVENTEMITTER:-------------------------------------------------------------------------------------------------------------------------->
+
+const EventEmitter = require('events');
+
+class Stock extends EventEmitter {
+  constructor(symbol, price) {
+    super();//necessary to call before using this in constructor while a class  extends another class
+    this.symbol = symbol;
+    this._price = price;
+  }
+
+  set price(newPrice) {
+    if (newPrice !== this._price) {
+      
+	this.emit('priceChanged', {
+        	symbol: this.symbol,
+        	oldPrice: this._price,
+        	newPrice,
+        	change: ((newPrice - this._price) / this._price) * 100
+      		}
+	);
+
+      this._price = newPrice;
+
+    }
+  }
+
+  get price() {
+    return this._price;
+  }
+}
+
+const appleStock = new Stock('AAPL', 150);
+
+appleStock.on('priceChanged', (data) => {
+  console.log(`Price of ${data.symbol} changed from ${data.oldPrice} to ${data.newPrice} (${data.change.toFixed(2)}%)`);
+});
+
+appleStock.price = 155;
+
+### console.log(appleStock.price); // Uses getter
+appleStock.price = 200;        // Uses setter
+
+LISTENER CHAINING:---------------------------------------------------------------------------------------------------------------------------->
+
+emitter
+  .on('start', () => console.log('Starting'))
+  .on('data', (data) => console.log('Data:', data))
+  .on('end', () => console.log('Ending'));
+
+emitter.emit('start');
+emitter.emit('data', 'Sample data');
+emitter.emit('end');
+
+ 
+PREPENDLISTENER:---------------------------------------------------------------------------------------------------------------------------->
+
+const EventEmitter = require('events');
+const myEmitter = new EventEmitter();
+
+myEmitter.on('log', () => console.log('Second')); 3rd
+myEmitter.prependListener('log', () => console.log('First')); 2nd
+myEmitter.prependListener('log', () => console.log('Thrid')); 1st
+
+myEmitter.emit('log');
+
+#### if i write in 1st prependlistener as PrependOnceListener ->  for 1st emit 1st 2nd 3rd ->for next emit only 2nd 3rd execute
+
+ERROR HANDLING:-------------------------------------------------------------------------------------------------------------------------->
+
+Emitter.on('error', (err) => {
+  console.error('Caught error:', err.message);
+});
+myEmitter.emit('error', new Error('Something went wrong!'));
+
+##If no listener is registered for error, Node.js will throw and crash.
+
+MAX Listeners LIMIT(default 10)----------------------------------------------------------------------------------------------->
+
+const EventEmitter = require('events');
+const myEmitter = new EventEmitter();
+myEmitter.setMaxListeners(20)
+
+COUNT LISTENERS------------------------------------------------------------------------------------------------------------------------------------->
+
+myEmitter.listenerCount('event name')
+
+
+ASYNC FUNCTION------------------------------------------------------------------------------------------------------------->
+async function fun(){
+  setTimeout(()=>{emitter.emit('event1','done1'),1000});
+  setTimeout(()=>{emitter.emit('event2','done2'),5000});
+  
+  const[data1,data2]=await Promise.all([
+      once(emitter,"event1"),
+    once(emitter,"event2")
+    ])
+    console.log(data2);
+}
+fun();
+
+
+**********************************************************************************************
+An interpreter is a type of computer program that directly executes instructions written in a programming or scripting language, without first converting them into machine code
+******************************************************************************************************

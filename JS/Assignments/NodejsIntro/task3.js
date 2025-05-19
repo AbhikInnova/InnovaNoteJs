@@ -1,0 +1,1 @@
+console.log((Math.random()*9000)+1000) //1000-9999
