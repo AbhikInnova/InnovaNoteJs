@@ -236,12 +236,26 @@
 
 
 
-// const obj = {};
+
+
+
+//PROPERTY DESCRIPTORS:
+// const obj = {
+//     name:"abhik",
+//     age:22,
+//     sex:"male",
+// };
 // Object.defineProperty(obj, 'name', {
 //   value: 'Alice',
-//   writable: false
+//   writable: false,
+//   configurable:false,
+//   enumerable:false
 // });
 
 // obj.name = 'Bob';   
-// console.log(obj.name);  // Alice
+// delete obj.name
 
+// for(let key in obj){
+//     console.log(key);
+// }
+// console.log(Object.getOwnPropertyDescriptors(obj))
