@@ -9,6 +9,8 @@
 // fs.readFile(__dirname+"/text.txt","utf-8",(err,data)=>{
 // console.log(data)
 // })
+
+
 // fs.unlinkSync("./text.txt")
 
 

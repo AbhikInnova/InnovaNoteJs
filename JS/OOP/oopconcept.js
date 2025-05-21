@@ -131,17 +131,16 @@
 // | Polymorphism  | Same method, different behavior          | Method overriding             |
 // | Abstraction   | Hiding complex logic                     | Abstract method simulation    |
 
-// ---
-
-// Let me know if you want a visual diagram or real-world example (like a user, admin, or bank account system)!
 
 //before oop we have procedural programming straight fowrd
-// problems of this spaghetti code ,, when i change a function other function will break, so much interdependency btwn all these function becomes problamastic
+//problems of this spaghetti code ,, when i change a function other function will break, so much interdependency btwn all these function becomes problamastic
 
 // OOP
 // property->
-//method->
+ //method->
 
+
+//  -------------------------------------------------------------------------------------------------------------------
 //OBJECT LITERALS-> is a simple way to define an object
 // const circle={
 //     radius:1,
@@ -153,6 +152,8 @@
 //         console.log("draw is a method")
 //     }
 // }//obj literal syntex
+
+// --------------------------------------------------------------------------------------------------------------------------
 
 //FACTORIES
 // function circle(radius){
@@ -166,29 +167,29 @@
 // const one =  circle(8);
 // one.draw();
 
+// ----------------------------------------------------------------------------------------------------------------------------------------------------
 //CONSTRUCTOR FUNCTION
-// function Circle(data) {
-//   (this.data = data),
-//     (this.draw = function () {
-//       console.log("draw");
-//       console.log(this);
-//     });
+
+
+// function fun(name,age){
+//     this.name=name
+//     this.age=age;
+//     return this;//by default return without write this 
 // }
-// const obj = new Circle(9);
-// we can defind as like this
-//Circle.call({},1,2,3,4)--->1,2,3,4 arguments
-//Circle.apply({},[1,2,3,4])-->[arguments]
+// const obj=fun("abhik",22);
+// const obj1=fun("soumya",21);//override value
+// console.log(obj);
 
 
+// const obj=new fun("abhik",22);
+// const obj1=new fun("soumya",21);
+// console.log(obj); //abhik,22
 
 
-
-
-//  new:1st it will create an empty object
+//  new:1st it will create an empty object//instance
 //  set this to point to that object
 //  return that obj
 //here the Circle is really an object
-
 
 
 
@@ -210,10 +211,15 @@
 
 //ADDING PROPERTIES   
 // circle.location={x:1}
+
 //circle['location']={x:1}
+
 //DELETE
+
 //delete  circle.location,
 //delete circle["location"]
+
+
 
 //iterate in a obj 
 // for(let key in obj){
@@ -222,23 +228,20 @@
 
 //Object.keys(circle)-->return array
 
-// if('key' in circle){
 
+
+// if('key' in circle){
 // }//existance of an key
+
+
+
 
 // const obj = {};
 // Object.defineProperty(obj, 'name', {
 //   value: 'Alice',
-//   writable: true
+//   writable: false
 // });
 
 // obj.name = 'Bob';   
 // console.log(obj.name);  // Alice
 
-
-// console.log(this);
-
-// function foo(){
-//     console.log(this);
-// }
-// foo();
