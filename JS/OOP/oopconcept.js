@@ -240,6 +240,8 @@
 
 
 //PROPERTY DESCRIPTORS:
+
+
 // const obj = {
 //     name:"abhik",
 //     age:22,
@@ -247,15 +249,35 @@
 // };
 // Object.defineProperty(obj, 'name', {
 //   value: 'Alice',
-//   writable: false,
-//   configurable:false,
-//   enumerable:false
+// //   writable: false,
+// //   configurable:false,
+// //   enumerable:false
 // });
 
 // obj.name = 'Bob';   
-// delete obj.name
+// console.log(obj.name)
+
+
+//////
+
+
+// const obj={}
+// Object.defineProperty(obj, 'name', {
+//   value: 'Alice',
+// });
+
+// obj.name = 'Bob';   
+// console.log(obj.name)
+
+
+
+
+
+
 
 // for(let key in obj){
 //     console.log(key);
 // }
-// console.log(Object.getOwnPropertyDescriptors(obj))
+// console.log(Object.getOwnPropertyDescriptors(Object))
+//if we create obj property using obj leterals descriptor default value will be true 
+//if er create property using Obkect.defineProperty() we have to hard code to set descriptors ture,  else it will be false

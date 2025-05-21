@@ -28,10 +28,92 @@
 // Overrides accelerate() to increase speed by 10
 
 // class Vehicle{
-//     constructor(brand,speed){
-//         this.brand=brand;
-//         this.speed=speed
+
+//    constructor(name){
+//      name = name 
+//    }
+// }
+
+// class car extends Vehicle{
+//     constructor(val){
+//         name = 'dsa'
+//         val = val
 //     }
 // }
 
-//  obj=new Vehicle()
+
+//  const obj1=new car("hlo")
+// console.log(obj1.name);
+
+//  obj.hi(37,38)
+ 
+
+
+
+// class A {
+//     constructor() {
+//         this.value = 10;
+//     }
+
+//     method() {
+//         console.log('A method');
+//     }
+// }
+
+// class B extends A {
+//     constructor() {
+//         super();
+//         this.value = 20;
+//     }
+
+//     method() {
+//         super.method(); 
+//         console.log('B method');
+//     }
+// }
+
+// class C extends B {
+//     constructor() {
+//         super();
+//         this.value = 30;
+//     }
+
+//     method() {
+//         super.method();
+//         console.log('C method');
+//     }
+// }
+
+// const obj = new C();
+// obj.method();
+
+
+
+
+
+
+class X {
+  constructor() {
+    this.value = 10;
+  }
+
+}
+
+class Z extends X {
+  constructor() {
+      super();   
+      this.value = 30;  
+
+
+  }
+    getValue() {
+    return this.value;
+  }
+}
+// 
+const obj = new Z();
+console.log(obj.getValue()); 
+
+
+
+

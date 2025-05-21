@@ -76,22 +76,22 @@
     // f()/exactly same output when we use arrow function in greet
 
 
-class myClass{
-    constructor(){
-        this.value=42;
-        this.hi=this.interval
-        console.log(this)
-    }
+// class myClass{
+//     constructor(){
+//         this.value=42;
+//         this.hi=this.interval
+//         console.log(this)
+//     }
 
- interval(){
-    this.value++;
-    // console.log(this);
- }
+//  interval(){
+//     this.value++;
+//     // console.log(this);
+//  }
 
-}
-const obj=new myClass();
-setTimeout(obj.hi.bind(obj),1000)
-const a=obj.hi();
+// }
+// const obj=new myClass();
+// setTimeout(obj.hi.bind(obj),1000)
+// const a=obj.hi();
 
 
 
