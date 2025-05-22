@@ -92,28 +92,123 @@
 
 
 
-class X {
-  constructor() {
-    this.value = 10;
+// class X {
+//   constructor() {
+//     this.value = 10;
+//   }
+
+// }
+
+// class Z extends X {
+//   constructor() {
+//       super();   
+//       this.value = 30;  
+
+
+//   }
+//     getValue() {
+//     return this.value;
+//   }
+// }
+// // 
+// const obj = new Z();
+// console.log(obj.getValue()); 
+
+
+
+
+// class Parent {
+//   greet(){
+//     console.log("hey there")
+//   }
+//   static greet() {
+//     console.log("Hello from Parent");
+//   }
+// }
+
+// class Child extends Parent {
+//   static greet() {
+//     console.log("Hello from Child");
+//     super.greet(); // calls Parent.greet()
+//   }
+// }
+
+// Child.greet();
+
+
+
+// class A {
+//   constructor() {
+//     this.value = 42;
+//   }
+
+//   getValue() {
+//     return this.value;
+//   }
+// }
+
+// class B extends A {
+//   constructor() {
+//     super();
+//     this.value = 100;
+//   }
+
+//   getValue() {
+//     return super.getValue();
+//   }
+// }
+
+// const b = new B();
+// console.log(b.getValue());
+
+
+
+
+
+
+
+
+
+
+// class Parent {
+  // get value() {
+  //   return 'Parent value';
+  // }
+// }
+
+// class Child extends Parent {
+//   constructor() {
+//     super();
+//     this.value = 'Child value';
+//   }
+
+//   printValues() {
+//     console.log('this.value:', this.value); 
+//     console.log('super.value:', super.value); 
+//   }
+// }
+
+// const c = new Child();
+// c.printValues();
+
+
+
+
+class Parent {
+  constructor(name) {
+    this.name = name;
+    console.log("Parent constructor");
   }
+
+  greet() {
+    console.log(`Hello from ${this.name}`);
+  }
+}
+
+class Child extends Parent {
 
 }
 
-class Z extends X {
-  constructor() {
-      super();   
-      this.value = 30;  
-
-
-  }
-    getValue() {
-    return this.value;
-  }
-}
-// 
-const obj = new Z();
-console.log(obj.getValue()); 
-
-
-
-
+const child = new Child("Alice");
+child.greet();
+console.log(child.constructor)

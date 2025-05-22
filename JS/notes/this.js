@@ -118,3 +118,25 @@
 
 // const obj=new myClass();
 // obj.interval();
+
+
+
+
+class Animal {
+  constructor() {
+    if (new.target === Animal) {
+      throw new Error("Animal is an abstract class and cannot be instantiated directly.");
+    }
+    console.log(`Created from: ${new.target.name}`);
+  }
+}
+
+class Dog extends Animal {
+  constructor() {
+    super(); // Calls Animal's constructor
+    console.log("Dog constructor");
+  }
+}
+
+new Dog();      // ✅ Works
+// new Animal();   // ❌ Error: Animal is an abstract class...
