@@ -214,10 +214,87 @@ WHERE NOT Country = 'Spain';
 #### select concat_ws(' ', fname, lname) as full_name from employee;
 
 - substr
-- left,right
-- length
-- upper ,lower
-- trim,ltrim,rtrim
+->extract a substring from a string.
+#### select substr(fname, 1, 3) as name_code from employee;
+
 -  replace
+->replace a substring within a string.
+->1st arg column name,2nd is substring to be replaced, 3rd is new substring.
+#### select replace(fname, 'John', 'Jane') as updated_name from employee;
+
+- reverse
+#### select reverse(fname) from employee;
+
+- length
+#### select length(fname) from employee;
+
+- upper ,lower
+#### select upper(fname) from employee;
+#### select lower(fname) from employee;
+
+- left,right
+#### select right(fname,3) from employee;
+#### select left(fname,3) from employee;
+
+- trim,ltrim,rtrim
+#### select trim(fname) from employee;
+#### select ltrim(fname) from employee;
+#### select rtrim(fname) from employee;
+
 - position
+#### select position('John' in fname) from employee;
+->return the position where j is found in fname.
+
 - string_agg
+
+
+## Altering Tables
+- we can add,drop,modify columns in a table using ALTER TABLE command.
+
+### Add a column
+#### alter table employee add column phone varchar(20) default '';
+
+### Drop a column
+#### alter table employe drop column phone;
+
+### rename a column or table name
+#### alter table employee rename column emp_id to id;
+#### alter table employee rename to staff;
+
+
+### Modify a column
+- set a new data type for a column
+#### alter table employee alter column fname set data type varchar(150)
+- set not null constraint
+#### alter table employee alter column fname set not null;
+- set default value
+#### alter table employee alter column fname set default 'Unknown';
+
+
+## Check Constraint
+- use for data validation and verification.
+- add check constraint:
+#### alter table employee add column mob varchar(15) check (length (mob)>=10)
+
+-> we can add constrain after creating column
+#### alter table employee add constraint check_mob_check CHECK(length(mob)>=10);
+
+- delete check constraint:
+#### alter table employee drop constraint constraint_name;
+->constraint name can be found using \d command in psql.
+
+
+## case expression
+#### select fname,id,
+#### case
+#### when salary > 60000 then 'HIGH'
+#### else 'LOW'
+#### end as scale
+#### from employee
+
+
+## RELATIONSHIP
+- A relationship is a connection between two or more tables in a database.
+
+## foreign key
+- when a table use abother table's primary key as a reference then it is called foreign key.
