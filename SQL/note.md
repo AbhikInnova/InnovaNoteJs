@@ -107,7 +107,7 @@
 )
 
 
-## clauses
+## CLAUSE
 - using clauses we can give conditions to our query for filtering data.
 - where
 - order by
@@ -139,3 +139,85 @@ select * from table_name where fname like '_a%';
 select * from table_name where fname like '__';
 - any two characters can be there.
 
+### AND:
+SELECT * FROM Customers
+WHERE Country = 'Brazil'
+AND City = 'Rio de Janeiro'
+AND CustomerID > 50;
+
+
+### OR:
+SELECT * FROM Customers
+WHERE City = 'Berlin' OR CustomerName LIKE 'G%' OR Country = 'Norway';
+
+
+### combine and or:
+SELECT * FROM Customers
+WHERE Country = 'Spain' AND (CustomerName LIKE 'G%' OR CustomerName LIKE 'R%');
+
+### instead of using multiple OR conditions we can use IN
+- select * from table_name where fname IN ('John', 'Doe', 'Jane');
+
+### NOT:
+SELECT * FROM Customers
+WHERE NOT Country = 'Spain';
+
+### BETWEEN
+- Between a certain range :Where price BETWEEN 50 AND 100
+
+### DISTINCT
+- SELECT DISTINCT column_name FROM table_name;
+- Used to return only distinct (different) values.
+
+### ORDER BY
+- SELECT * FROM table_name ORDER BY price:sort table in accessing order based on price
+- SELECT * FROM table_name ORDER BY price DESC :sort table in descending order based on price
+- SELECT * FROM table_name ORDER BY price DESC,name ASC:1st priority is price if multiple name has same price then its sort according to descending order of name
+
+## Aggregate Functions
+- Aggregate functions perform a calculation on a set of values and return a single value.
+- Common aggregate functions include:
+
+  - COUNT(): Returns the number of rows that match a specified condition.
+  select count(*) from employee;
+
+  - SUM(): Returns the total sum of a numeric column.
+    select sum(salary) from employee;
+
+  - AVG(): Returns the average value of a numeric column.
+    select avg(salary) from employee;
+
+
+  - MIN(): Returns the minimum value in a set.
+    select min(salary) from employee;
+
+  - MAX(): Returns the maximum value in a set.
+    select max(salary) from employee;
+
+## GROUP BY
+- we can grouping the result set by using common values in specified columns.
+#### select department , count(*) from employee group by department;
+->in this query we are show department by grouping employee department,also in this count is this number of row count of same group.
+
+- SELECT department, sum(salary) FROM employee GROUP BY department;
+
+## STRING FUNCTIONS
+
+### some functions:
+- concat,concat_ws
+->add two or more strings together.
+#### select concat(fname, lname) from employee;
+->give a result without any name of column so we can use as alias
+#### select emp_id, concat('fname',' ','lname') as fullname from employee;
+
+->concat_ws is used for adding separator between strings.(1st argument is separator)
+#### select concat_ws(' ', fname, lname) as full_name from employee;
+
+- substr
+- left,right
+- length
+- upper ,lower
+- trim,ltrim,rtrim
+-  replace
+- position
+- string_agg
