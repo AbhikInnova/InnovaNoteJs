@@ -107,3 +107,30 @@
 // otherUserName.trueLength();
 
 "hello ji  ".trueLength();
+
+
+
+
+
+
+
+function Person(name) {
+  this.name = name;  // own property
+  this.greet=function(){//own method
+    console.log("hi");
+  }
+}
+
+// Add method on the prototype
+Person.prototype.sayHello = function() {
+  console.log(`Hello, my name is ${this.name}`);
+};
+
+const p = new Person('Alice');
+
+console.log(p.hasOwnProperty('sayHello')); // false
+console.log(p); // not showing sayHello 
+
+p.sayHello(); // Hello, my name is Alice
+
+
