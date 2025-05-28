@@ -298,3 +298,36 @@ WHERE NOT Country = 'Spain';
 
 ## foreign key
 - when a table use abother table's primary key as a reference then it is called foreign key.
+#### create table employee (
+#### id serial primary key,
+#### name varchar(100),
+#### dept varchar(100),
+#### salary numeric
+#### );
+
+#### create table department (
+#### id int,
+#### name varchar(100),
+#### foreign key (id) references employee(id)
+#### );
+
+-SELECT name, dept, salary
+FROM t
+WHERE (dept, salary) IN (
+    SELECT dept, MAX(salary)
+    FROM t
+    GROUP BY dept
+);
+
+## view 
+- A view is a virtual table that is based on the result of a SELECT query.
+#### create view view_name as
+
+## index
+ - btree index is the default type of index in PostgreSQL.
+ - Indexes are used to speed up the retrieval of rows from a table.
+ - inpostgresql index name is unique across the database.
+ - Syntax to create an index:
+
+ #### create index index_name on table_name (column_name);
+ #### drop index index_name;
