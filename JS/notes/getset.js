@@ -40,24 +40,24 @@
 
 
 
-// class user{
-//     constructor(email,password){
-//         this.email=email
-//         this.password=password//set
-//         console.log(this.password);
+class user{
+    constructor(email,password){
+        this.email=email
+        this.password=password//set
+         console.log(this.password);
         
-//     }
-//     get password(){
-//         console.log("called");
-//         return this._password;
-//     }
-//     set password(value){
-//       this._password=value
-//      console.log(this.password,"1");
+    }
+    get password(){
+        console.log("called");
+        return this._password;
+    }
+    set password(value){
+      this._password=value
+     console.log('set');
 
-//     }
-// }
+    }
+}
 
-// const abhik=new user("abhik@err","2324sds")
-// abhik.password="6789878"
-// console.log(abhik.password)
+const abhik=new user("abhik@err","2324sds")
+abhik.password="6789878"
+console.log(abhik.password)

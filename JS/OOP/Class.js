@@ -12,7 +12,6 @@
 //   getCapitalUsername(){
 //     return this.name.toUpperCase();
 //   }
-
 // }
 
 // const user=new myClass("abhik","abhik@innova","abcd");
