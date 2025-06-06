@@ -1,26 +1,61 @@
-// const express = require('express');
-// const app = express();
-// const PORT = 3000;
+// // const express = require('express');
+// // const app = express();
+// // const PORT = 3000;
 
-// // Middleware to parse JSON bodies
-// app.use(express.json());
-// app.use(express.urlencoded({extended:true}))//for get form data
+
 // // Start server
-// app.listen(PORT, () => {
-//   console.log(`Server running on port ${PORT}`);
-// });
+// // app.listen(PORT, () => {
+// //     console.log(`Server running on port ${PORT}`);
+// // });
 
+
+
+
+// //middleware:->
 // //app.use(middleware) attaches middleware that runs before route handlers (can modify request/response or handle errors).
 
+// app.use(express.json());//Middleware to parse incoming requests with JSON playloads(chunk of data in format of json),,,can be accessable from req.body;
+// app.use(express.urlencoded({extended:true}))//Parses incoming URL-encoded data (e.g., from HTML forms)-> true means accept nested object 
+
 // //custom middleware
+// //basically if i delcreare middleware like this it will be called for every incoming request 
 // app.use((req, res, next) => {
 //   console.log(`${req.method} ${req.url}`);
 //   next(); // pass control to next middleware or route
 // });
+// //but if we want to check middleware for some specific router then we have to clear it without app.use()
+//  function auth(req,res,next){
+//     if(true){
+//         next()
+//     }
+//     else res.status(401).send("unauth");
+//  }
 
-// // express.json() — parses JSON request bodies
-// // express.urlencoded() — parses URL-encoded data
+//  app.get('/private', auth, (req, res) => {
+//   res.send('Private route, you are authenticated');
+// });
 
+// //error handling useing middleware
+// app.use((err,req,res,next)=>{
+// console.log(err.stack);//gives the location of error
+// res.status(500).send("internal server error");
+// })
+
+
+// app.get('/error', (req, res) => {
+//   try{
+//     throw new Error("new error");
+//   }
+//   catch(err){
+// console.log(err.message);
+//   }
+// });
+// // Express will catch the error and call the error middleware above
+
+
+
+
+// //handelers
 // app.get('/users', (req, res) => {
 //   res.send('GET users');
 // });
@@ -42,7 +77,7 @@
 // });
 
 
-// //res.send ->Sends a response to the client — can be a string, object, array, Buffer, etc.
+// // res.send ->Sends a response to the client — can be a string, object, array, Buffer, etc.
 // // res.send('Hello World');
 // // res.send({ message: 'OK' });
 // // res.send([1, 2, 3]);
@@ -54,12 +89,9 @@
 // //Use when returning API responses or structured data.
 // //Automatically stringifies the object and sets headers.
 
-// // res.status ->Sets the HTTP status code (e.g., 200 OK, 404 Not Found, 500 Internal Server Error).
-// // res.status(404).send('Not Found');
-// // res.status(201).json({ message: 'Created' });
+
 // // Use res.status() before res.send() or res.json() to control the response code.
 // // Status codes are important for client-side logic (e.g., error handling).
-
 
 // // 200 OK with plain text
 // // res.send('Everything is fine.');
@@ -71,65 +103,50 @@
 // // res.status(400).send('Invalid input');
 // // 404 Not Found
 // // res.status(404).json({ error: 'User not found' });
+// //500->error
 
 
+const express = require('express');
+const { Pool } = require('pg');
 
-// // express.Router() is a class in Express used to create modular, mountable route handlers. 
+const app = express();
+const port = 3000;
 
+// PostgreSQL connection
+const pool = new Pool({
+  user: 'your_pg_user',
+  host: 'localhost',
+  database: 'your_db',
+  password: 'your_password',
+  port: 5432,
+});
 
-// // project/
-// // │
-// // ├── app.js
-// // ├── routes/
-// // │   ├── users.js
-// // │   └── products.js
+// Parameter middleware
+app.param('userId', async (req, res, next, userId) => {
+  try {
+    const result = await pool.query('SELECT * FROM users WHERE id = $1', [userId]);
 
+    if (result.rows.length === 0) {
+      return res.status(404).send('User not found');
+    }
 
-// //main app.js
-// const express = require('express');
-// const app = express();
-// const userRoutes = require('./routes/users');
-// const productRoutes = require('./routes/products');
+    req.user = result.rows[0]; // attach user to request
+    next();
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Database error');
+  }
+});
 
-// app.use(express.json());
+// Route using userId
+app.get('/users/:userId', (req, res) => {
+  res.send(`User Name: ${req.user.name}, Email: ${req.user.email}`);
+});
 
-// // Mount routers
-// app.use('/users', userRoutes);
-// app.use('/products', productRoutes);
-
-// app.listen(3000, () => {
-//   console.log('Server is running on port 3000');
-// });
-
-
-
-// //routes/users.js: User Routes
-// const express = require('express');
-// const router = express.Router();
-// // GET /users
-// router.get('/', (req, res) => {
-//   res.send('List of users');
-// });
-// // GET /users/:id
-// router.get('/:id', (req, res) => {
-//   res.send(`User with ID ${req.params.id}`);
-// });
-// module.exports = router;
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
+});
 
 
-// //routes/products.js: Product Routes
-// const express = require('express');
-// const router = express.Router();
-
-// // GET /products
-// router.get('/', (req, res) => {
-//   res.send('List of products');
-// });
-
-// // POST /products
-// router.post('/', (req, res) => {
-//   res.send('Product created');
-// });
-
-// module.exports = router;
-    
+// // authentication 
+// //  cookies are domain specific

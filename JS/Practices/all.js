@@ -20,20 +20,30 @@
     
 // }
 
-async function delayedLog(msg, delay) {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      console.log(msg);
-      resolve();
-    }, delay);
-  });
+// async function delayedLog(msg, delay) {
+//   return new Promise(resolve => {
+//     setTimeout(() => {
+//       console.log(msg);
+//       resolve();
+//     }, delay);
+//   });
+// }
+
+// (async () => {
+//   await delayedLog("One", 1000);
+//   delayedLog("Two", 500);
+//   console.log("Three");
+// })();
+// console.log("After");
+
+// let p=new Promise((res,rej)=>setTimeout(res,2000,10));
+// p.then(data=>data+2).then(data1=>console.log(data1)
+// )
+
+const obj={
+  a: 10,
+  x:()=>{
+     console.log(a);//undefined;->this.a
+  }
 }
-
-(async () => {
-  await delayedLog("One", 1000);
-  delayedLog("Two", 500);
-  console.log("Three");
-})();
-console.log("After");
-
-
+obj.x();

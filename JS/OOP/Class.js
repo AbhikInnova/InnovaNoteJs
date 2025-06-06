@@ -62,4 +62,3 @@
 // // console.log(user===user1);
 // console.log(user1 instanceof myClass);
 
-

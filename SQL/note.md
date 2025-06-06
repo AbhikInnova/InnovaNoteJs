@@ -140,6 +140,7 @@ select * from table_name where fname like '__';
 - any two characters can be there.
 
 ### AND:
+
 SELECT * FROM Customers
 WHERE Country = 'Brazil'
 AND City = 'Rio de Janeiro'

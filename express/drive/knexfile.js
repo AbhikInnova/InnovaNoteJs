@@ -1,0 +1,15 @@
+module.exports={
+    development:{
+        client:'pg',
+        connection:{
+        host:"localhost",
+    user:"UserSQL",
+    port:5432,
+    password:"Abhik@0987",
+    database:"abhik1",
+        },
+        migrations:{
+            directory:'./migrations'
+        }
+    }
+}

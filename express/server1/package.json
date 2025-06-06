@@ -1,24 +1,18 @@
 {
-  "name": "nodejs_abhik",
+  "name": "server1",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
+  "keywords": [],
   "description": "",
   "dependencies": {
-    "axios": "^1.9.0",
-    "cros": "^1.1.0",
-    "dotnet": "^1.1.4",
+    "ejs": "^3.1.10",
     "express": "^5.1.0",
-    "joi": "^17.13.3",
-    "knex": "^3.1.0",
+    "morgan": "^1.10.0",
     "pg": "^8.16.0"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.10"
   }
 }

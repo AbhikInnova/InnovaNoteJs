@@ -281,3 +281,9 @@
 // console.log(Object.getOwnPropertyDescriptors(Object))
 //if we create obj property using obj leterals descriptor default value will be true 
 //if er create property using Obkect.defineProperty() we have to hard code to set descriptors ture,  else it will be false
+
+
+
+
+
+

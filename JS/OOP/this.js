@@ -140,3 +140,15 @@ class Dog extends Animal {
 
 new Dog();      // ✅ Works
 // new Animal();   // ❌ Error: Animal is an abstract class...
+
+
+function Person(name) {
+  this.name = name;
+
+  this.sayName = () =>{
+    console.log(this.name);  
+  };
+}
+
+const p = new Person("Charlie");
+p.sayName(); 

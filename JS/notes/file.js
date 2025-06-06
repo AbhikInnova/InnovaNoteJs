@@ -18,7 +18,7 @@
 // const fs = require("fs");
 
 // async function fun() {
-//   return await fs.promises.readFile(__dirname + "/text.txt", "utf-8", (error, data) => {
+//   return await fs.promises.readFile(__dirname + "/note.txt", "utf-8", (error, data) => {
 //     return data;
 //   });
 // }
@@ -26,7 +26,6 @@
 // fun().then((data) => {
 //   console.log(data);
 // });
-
 
 
 //stream 
@@ -64,6 +63,8 @@
 // .end() — Signals that no more data will be written
 // .on('finish', callback) — Fired when all data is written
 // .on('error', callback) — Handles write errors
+
+
 
 // const fs = require('fs');
 // const writable = fs.createWriteStream('output.txt');
